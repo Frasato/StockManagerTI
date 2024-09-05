@@ -1,8 +1,12 @@
+import NavBar from "../../Components/NavBar/NavBar";
+import Search from "../../Components/Search/Search";
+
 const Home = () =>{
     return(
-        <div>
-            <h1>Testando Router Dom!</h1>
-        </div>     
+        <main>
+            <NavBar />
+            <Search />
+        </main>     
     )
 }
 
