@@ -7,6 +7,7 @@ import { ListType } from "../../@Types/ListType";
 const Home = () =>{
 
     const [itens, setItens] = useState<ListType[]>([]);
+    const [search, setSearch] = useState<string>("");
 
     useEffect(()=>{
         const getAll = async() =>{
@@ -27,14 +28,24 @@ const Home = () =>{
         getAll();
     },[])
 
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
+        setSearch(e.target.value);
+    }
+
+    const filteredItems = itens.filter(item =>
+        item.itemName.toLowerCase().includes(search.toLowerCase()) ||
+        item.barCode.toLowerCase().includes(search.toLowerCase()) ||
+        item.markName.toLowerCase().includes(search.toLowerCase())
+    )
+
     return(
         <main>
             <NavBar />
             <div className="flex justify-center">
                 <h1 className="text-4xl text-neutral-50 font-bold mb-5">Stock Itens</h1>
             </div>
-            <Search />
-            {itens.map((item, index)=>{
+            <Search change={handleSearchChange}/>
+            {filteredItems.map((item, index)=>{
                 return(
                     <List barCode={item.barCode} itemName={item.itemName} markName={item.markName} amount={item.amount} createdDate={item.createdDate} color={index % 2 === 0? "bg-gray-600": ""} id={item.id} key={item.id}/>
                 )
