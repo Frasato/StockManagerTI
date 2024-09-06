@@ -3,9 +3,9 @@ import NavBar from "../../Components/NavBar/NavBar";
 
 const Create = () =>{
     return(
-        <main>
+        <main className="h-128">
             <NavBar />
-            <section className="flex flex-col justify-center items-center min-h-screen gap-5">
+            <section className="flex flex-col justify-center items-center min-h-full gap-5">
                 <div className="flex flex-col w-2/3">
                     <label className="text-neutral-50">Barcode</label>
                     <input type="text" className="bg-transparent border-2 rounded-xl w-full h-10 text-neutral-50 focus:outline-none p-2"/>
