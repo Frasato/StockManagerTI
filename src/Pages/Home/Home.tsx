@@ -25,7 +25,7 @@ const Home = () =>{
         }
 
         getAll();
-    },[itens])
+    },[])
 
     return(
         <main>
