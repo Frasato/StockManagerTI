@@ -3,6 +3,7 @@ import App from "../App";
 import Home from "../Pages/Home/Home";
 import Create from "../Pages/Create/Create";
 import Out from "../Pages/Out/Out";
+import Remove from "../Pages/Remove/Remove";
 
 export const router = createBrowserRouter([
     {
@@ -12,6 +13,7 @@ export const router = createBrowserRouter([
             {path: "", element: <Home />},
             {path: "/create", element: <Create />},
             {path: "/out", element: <Out />},
+            {path: "/remove", element: <Remove />},
         ]
     }
 ])
