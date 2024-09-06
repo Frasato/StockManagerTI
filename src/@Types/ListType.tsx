@@ -1,9 +1,9 @@
 export type ListType = {
-    id: string,
+    id?: string,
     barCode: string,
     itemName: string,
     markName: string,
     amount: string,
-    createdDate: string,
+    createdDate?: string,
     color?: string,
 }
