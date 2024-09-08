@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import NavBar from "../../Components/NavBar/NavBar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { ListType } from "../../@Types/ListType";
 
 const Update = () =>{
 
@@ -8,6 +9,33 @@ const Update = () =>{
     const [itemName, setItemName] = useState<string>("");
     const [markName, setMarkName] = useState<string>("");
     const [amount, setAmount] = useState<string>("");
+    const {id} = useParams<string>();
+
+    useEffect(()=>{
+        const findItem = async() =>{
+            try{
+                const response = await fetch(`http://localhost:8080/itens/all`);
+
+                if(!response.ok){
+                    throw new Error("Failed to fetch items");
+                }
+
+                const responseData: ListType[] = await response.json();
+                const filterItem: ListType = responseData.find(item => item.id === id);
+
+                if(filterItem){
+                    setBarCode(filterItem.barCode);
+                    setItemName(filterItem.itemName);
+                    setMarkName(filterItem.markName);
+                    setAmount(filterItem.amount);
+                }
+            }catch(err){
+                console.error(err);
+            }
+        }
+
+        findItem();
+    },[id])
 
     const updateItem = () =>{
 
