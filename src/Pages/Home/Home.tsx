@@ -3,6 +3,7 @@ import List from "../../Components/List/List";
 import NavBar from "../../Components/NavBar/NavBar";
 import Search from "../../Components/Search/Search";
 import { ListType } from "../../@Types/ListType";
+import { Link } from "react-router-dom";
 
 const Home = () =>{
 
@@ -47,7 +48,9 @@ const Home = () =>{
             <Search change={handleSearchChange}/>
             {filteredItems.map((item, index)=>{
                 return(
-                    <List barCode={item.barCode} itemName={item.itemName} markName={item.markName} amount={item.amount} createdDate={item.createdDate} color={index % 2 === 0? "bg-gray-600": ""} id={item.id} key={item.id}/>
+                    <Link to={`/update/${item.id}`}>
+                        <List barCode={item.barCode} itemName={item.itemName} markName={item.markName} amount={item.amount} createdDate={item.createdDate} color={index % 2 === 0? "bg-gray-600": ""} id={item.id} key={item.id}/>
+                    </Link>
                 )
             })}
         </main>     
