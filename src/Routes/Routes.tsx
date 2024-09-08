@@ -4,6 +4,7 @@ import Home from "../Pages/Home/Home";
 import Create from "../Pages/Create/Create";
 import Out from "../Pages/Out/Out";
 import Remove from "../Pages/Remove/Remove";
+import Update from "../Pages/Update/Update";
 
 export const router = createBrowserRouter([
     {
@@ -14,6 +15,7 @@ export const router = createBrowserRouter([
             {path: "/create", element: <Create />},
             {path: "/out", element: <Out />},
             {path: "/remove", element: <Remove />},
+            {path: "/update/:id", element: <Update />},
         ]
     }
 ])
