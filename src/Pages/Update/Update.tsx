@@ -1,10 +1,11 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import NavBar from "../../Components/NavBar/NavBar";
 import { useEffect, useState } from "react";
 import { ListType } from "../../@Types/ListType";
 
 const Update = () =>{
 
+    const [redirect, setRedirect] = useState<boolean>(false);
     const [barCode, setBarCode] = useState<string>("");
     const [itemName, setItemName] = useState<string>("");
     const [markName, setMarkName] = useState<string>("");
@@ -12,6 +13,8 @@ const Update = () =>{
     const {id} = useParams<string>();
 
     useEffect(()=>{
+        setRedirect(false);
+
         const findItem = async() =>{
             try{
                 const response = await fetch(`http://localhost:8080/itens/all`);
@@ -60,10 +63,13 @@ const Update = () =>{
 
             const responseData = await reponse.json();
             alert("Update Item success! " + responseData);
+            setRedirect(true);
         }catch(err){
             console.error(err);
         }
     }
+
+    if(redirect) return <Navigate to="/"/>
 
     return(
         <main className="h-128">
@@ -118,7 +124,7 @@ const Update = () =>{
                     </div>
                     <button
                         className="bg-orange-600 text-neutral-50 h-10 w-2/4 rounded-xl hover:bg-orange-500"
-                        onClick={updateItem}>Create</button>
+                        onClick={updateItem}>Update</button>
                 </div>
                 <Link to="/" className="text-neutral-50 hover:text-neutral-400 mt-10">Go Back To Home!</Link>
             </section>
