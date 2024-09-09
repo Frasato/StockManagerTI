@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import NavBar from "../../Components/NavBar/NavBar";
 import { useState } from "react";
 
 const Create = () =>{
 
+    const [redirect, setRedirect] = useState<boolean>(false);
     const [barCode, setBarCode] = useState<string>();
     const [itemName, setItemName] = useState<string>();
     const [markName, setMarkName] = useState<string>();
@@ -32,6 +33,7 @@ const Create = () =>{
     
                 const responseData = await create.json();
                 alert("Created Success: " + responseData);
+                setRedirect(true);
             }else{
                 alert("Empty fields... Make sure to fill all fields!");
             }
@@ -40,6 +42,8 @@ const Create = () =>{
             console.error("Error on fecth method POST: " + err);
         }
     }
+
+    if(redirect) return <Navigate to="/"/>
 
     return(
         <main className="h-128">
