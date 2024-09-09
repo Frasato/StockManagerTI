@@ -21,7 +21,7 @@ const Update = () =>{
                 }
 
                 const responseData: ListType[] = await response.json();
-                const filterItem: ListType = responseData.find(item => item.id === id);
+                const filterItem: ListType | undefined = responseData.find(item => item.id === id);
 
                 if(filterItem){
                     setBarCode(filterItem.barCode);
@@ -37,8 +37,32 @@ const Update = () =>{
         findItem();
     },[id])
 
-    const updateItem = () =>{
+    const updateItem = async() =>{
+        try{
+            const itemData = {
+                barCode: barCode,
+                itemName: itemName,
+                markName: markName,
+                amount: amount,
+            }
 
+            const reponse = await fetch(`http://localhost:8080/itens/update/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(itemData)
+            });
+
+            if(!reponse.ok){
+                throw new Error("Error on update item: " + id);
+            }
+
+            const responseData = await reponse.json();
+            alert("Update Item success! " + responseData);
+        }catch(err){
+            console.error(err);
+        }
     }
 
     return(
