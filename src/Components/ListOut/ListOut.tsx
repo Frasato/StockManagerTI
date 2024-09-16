@@ -3,7 +3,7 @@ import { ListOutType } from "../../@Types/ListOutType";
 const ListOut = (Props: ListOutType) =>{
     return(
         <section className={Props.color+" h-10"} key={Props.id}>
-                <ul className="flex justify-start items-center h-10 ml-32">
+                <ul className="flex justify-start items-center h-10">
                     <li className="text-neutral-50 text-left flex-1">{Props.barCode}</li>
                     <li className="text-neutral-50 text-left flex-1">{Props.itemName}</li>
                     <li className="text-neutral-50 text-left flex-1">{Props.markName}</li>
