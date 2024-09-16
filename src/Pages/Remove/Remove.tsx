@@ -46,7 +46,7 @@ const Remove = () => {
             }
 
             if(amount != '' && city != '' && sector != ''){
-                if(filteredData[0].amount > amount){
+                if(Number(filteredData[0].amount) > 0){
                     const response = await fetch("http://localhost:8080/itens/takeout", {
                         method: "PUT",
                         headers:{
@@ -58,6 +58,7 @@ const Remove = () => {
                     if(!response.ok){
                         throw new Error("Error on fetch: " + response.statusText);
                     }
+                    alert('Removed');
                 }
             }else{
                 alert("Make sure to fill all fields...");
