@@ -7,6 +7,7 @@ import ListOut from "../../Components/ListOut/ListOut";
 const Out = () =>{
 
     const [offItems, setOffItems] = useState<ListOutType[]>([]);
+    const [search, setSearch] = useState<string>('');
 
     useEffect(()=>{
         const listAllOutItems = async() =>{
@@ -28,14 +29,23 @@ const Out = () =>{
         listAllOutItems();
     },[])
 
+    const handlerSearchField = (text: React.ChangeEvent<HTMLInputElement>) => setSearch(text.target.value);
+
+    const filteredItems = offItems.filter(item => 
+        item.itemName.toLowerCase().includes(search.toLowerCase()) ||
+        item.markName.toLowerCase().includes(search.toLowerCase()) ||
+        item.barCode.toLowerCase().includes(search.toLowerCase())
+        
+    )
+
     return(
         <main>
             <NavBar />
             <div className="flex justify-center mt-5">
                 <h1 className="text-4xl text-neutral-50 font-bold mb-5">Exit item!</h1>
             </div>
-            <Search />
-            {offItems.map((item, index)=>{
+            <Search change={(text) => handlerSearchField(text)}/>
+            {filteredItems.map((item, index)=>{
                 return(
                     <ListOut
                         barCode={item.barCode}
