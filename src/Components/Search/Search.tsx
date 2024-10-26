@@ -1,10 +1,7 @@
 import { FaSearch } from "react-icons/fa";
+import { SearchType } from "../../@Types/SearchType";
 
-type seacrhType = {
-    change?: (e: React.ChangeEvent<HTMLInputElement>) => void
-}
-
-const Search = (Props: seacrhType) =>{
+const Search = (Props: SearchType) =>{
     return(
         <section className="flex flex-col justify-center items-center mb-10">
             <div className="flex items-center justify-between border-2 rounded-xl w-5/12 p-1">
