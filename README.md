@@ -7,7 +7,6 @@ what comes out and what do we need.</p>
 <p>I use mostly popular tecnologis in this projecs, like:</p>
 
 - React
-- Vite
 - React Router
 - Typescript
 - Tailwind
